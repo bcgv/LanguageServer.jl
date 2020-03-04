@@ -19,7 +19,7 @@ mutable struct Document
         cst.val = path
         set_doc(doc.cst, doc)
         setroot(doc, doc)
-        return doc 
+        return doc
     end
 end
 Base.display(doc::Document) = println("Doc: $(basename(doc._uri)) ")
@@ -70,7 +70,7 @@ function get_offset(doc::Document, line::Integer, character::Integer)
     io = IOBuffer(get_text(doc))
     try
         seek(io, line_offsets[line + 1])
-        while character > 0        
+        while character > 0
             c = read(io, Char)
             character -= 1
             if UInt32(c) >= 0x010000
